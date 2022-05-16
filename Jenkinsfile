@@ -10,6 +10,7 @@ pipeline {
     }
     stage('Build') {
       steps {
+        sh "echo $PATH"
         sh "mvn clean install"
       }
     }
