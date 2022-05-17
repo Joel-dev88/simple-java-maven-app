@@ -3,7 +3,7 @@ pipeline {
     label 'agent1'
   }
   tools {
-    maven 'maven384
+    maven 'maven384'
   }
   stages {
     stage('Checkout') {
