@@ -25,4 +25,3 @@ pipeline {
   }
 }
 //Declarative
-//Test Webhooks
