@@ -22,6 +22,13 @@ pipeline {
         sh "mvn test"
       }
     }
+    stage('Post tasks') {
+      steps {
+        sh "echo send an email"
+      }
+    }
   }
 }
 //Declarative
+
+
