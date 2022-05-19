@@ -29,19 +29,19 @@ pipeline {
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
       }
     }
-    post {
-      always {
-        deleteDir()
-      }
-      failure {
-        echo "sendmail -s Maven Job Failed recipients@myco.com"
-      }
-      success {
-        echo "The job is successful"
-      }
+  post {
+    always {
+      deleteDir()
+    }
+    failure {
+      echo "sendmail -s Maven Job Failed recipients@myco.com"
+    }
+    success {
+      echo "The job is successful"
     }
   }
 }
+
 //Declarative
 
 
