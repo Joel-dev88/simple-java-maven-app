@@ -29,6 +29,12 @@ pipeline {
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
       }
     }
+    stage('Deploy') {
+      echo "Deploying to Dev Enviroment"
+      sshagent(['maven-cd-key']) {
+        sh "scp target/my-app-1.0-SNAPSHOT.jar ec2-user@172.31.35.196:/home/ec2-user"
+      }
+    }
   }
   post {
     always {
