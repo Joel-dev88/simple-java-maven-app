@@ -29,6 +29,7 @@ pipeline {
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
       }
     }
+  }
   post {
     always {
       deleteDir()
