@@ -5,7 +5,7 @@ pipeline {
   tools {
     maven 'maven384'
   }
-  enviroment {
+  environment {
     target_user = "ec2-user"
     target_server = "172.31.35.196"
   }
