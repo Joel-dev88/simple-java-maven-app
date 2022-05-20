@@ -60,6 +60,7 @@ pipeline {
           }
         }
       }
+    }
     stage('Deploy to UAT') {
       environment {
         target_user = "ec2-user"
@@ -84,4 +85,4 @@ pipeline {
 }
 
 //Declarative
-//test
+//testt 
