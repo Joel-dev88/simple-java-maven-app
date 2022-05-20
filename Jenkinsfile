@@ -62,6 +62,9 @@ pipeline {
       }
     }
     stage('Deploy to UAT') {
+      input {
+        message 'Do you want me to deploy to UAT?'
+      }
       environment {
         target_user = "ec2-user"
         target_server = ""
@@ -86,3 +89,13 @@ pipeline {
 
 //Declarative
 //testt 
+/*
+    stage('Deploy') {
+      steps {
+        echo "Deploying to Dev Enviroment"
+        sshagent(['maven-cd-key']) {
+          sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user" 
+        }
+      }
+    }
+*/
