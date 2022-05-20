@@ -36,7 +36,7 @@ pipeline {
     stage('Deploy to Dev') {
       parallel {
         stage('target1'){
-          enviroment {
+          environment {
             target_user = "ec2-user"
             target_server = "172.31.35.196"
           }
@@ -48,7 +48,7 @@ pipeline {
           }
         }
         stage('target2'){
-          enviroment {
+          environment {
             target_user = "ec2-user"
             target_server = "172.31.36.213"
           }
