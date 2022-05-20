@@ -5,6 +5,10 @@ pipeline {
   tools {
     maven 'maven384'
   }
+  enviroment {
+    target_user = "ec2-user"
+    target_server = "172.31.35.196"
+  }
   
   options {
     timeout(10)
@@ -29,11 +33,31 @@ pipeline {
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
       }
     }
-    stage('Deploy') {
-      steps {
-        echo "Deploying to Dev Enviroment"
-        sshagent(['maven-cd-key']) {
-          sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar ec2-user@172.31.35.196:/home/ec2-user" 
+    stage('Deploy to Dev') {
+      parallel {
+        stage('target1'){
+          enviroment {
+            target_user = "ec2-user"
+            target_server = "172.31.35.196"
+          }
+          steps {
+            echo "Deploying to Dev Enviroment"
+            sshagent(['maven-cd-key']) {
+              sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user" 
+            } 
+          }
+        }
+        stage('target2'){
+          enviroment {
+            target_user = "ec2-user"
+            target_server = "172.31.36.213"
+          }
+          steps {
+            echo "Deploying to Dev Enviroment"
+            sshagent(['maven-cd-key']) {
+              sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user" 
+            } 
+          }
         }
       }
     }
@@ -54,3 +78,13 @@ pipeline {
 //Declarative
 
 
+/*
+    stage('Deploy') {
+      steps {
+        echo "Deploying to Dev Enviroment"
+        sshagent(['maven-cd-key']) {
+          sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user" 
+        }
+      }
+    }
+/*
