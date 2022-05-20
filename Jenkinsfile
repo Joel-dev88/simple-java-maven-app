@@ -11,7 +11,7 @@ pipeline {
   }
   
   options {
-    timeout(10)
+    timeout(4)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
   }
 
